@@ -1,12 +1,22 @@
 #!/bin/sh
 
-filepath=$1
+outdir=$1
+filepath=$2
 
-outdir="/Users/joshuaquinlan/Desktop/Out"
+if [ $# -ne 2 ]; then
+  echo "Usage: ./convert.sh <output directory> <data.csv>"
+  echo "\n(The output directory should be an absolute path WITHOUT a trailing slash)"
+  exit 1
+fi
 
 if [ ! -d $outdir ]; then
-  echo "Output directory specified does not exist. Please create it then re-run the script."
-  exit 1
+  echo "Output directory specified does not exist. Creating..."
+  mkdir $outdir
+  if [ ! $? -eq 0 ]; then
+    echo "Directory creation failed. Aborting..."
+    exit 1
+  fi
+  echo "Directory created successfully. Continuing..."
 fi
 
 if [ ! $filepath ]; then 

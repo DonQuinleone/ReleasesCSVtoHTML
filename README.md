@@ -6,13 +6,11 @@ Using the template.csv file, produce a pipe-delimited CSV file comprising all re
 
 ## Usage
 
-Open the script and define your output directory (`$outdir`). Make sure that this exists.
-
-Then, make the script executable and pass in your pipe-delimited CSV as the first argument of the script:
+Then, make the script executable and pass in both your output directory (as an absolute path without a trailing slash) and your pipe-delimited CSV as arguments:
 
 ```
 chmod +x convert.sh
-./convert.sh your-data.csv
+./convert.sh /path/to/output your-data.csv
 ```
 
 
