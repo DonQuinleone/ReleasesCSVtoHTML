@@ -53,7 +53,7 @@ while IFS='|' read -r AlbumTitle AlbumWriter SubOrg AlbumFeatArtists ReleaseDate
 
     listenbuttons="$listenbuttons</p>"
 
-    if [ $Performers ]; then
+    if [ "$Performers" ]; then
       formattedperformers="<h2>Performers</h2><p>$Performers</p>"
     else
       formattedperformers=""
