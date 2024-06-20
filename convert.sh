@@ -60,16 +60,39 @@ while IFS='|' read -r AlbumTitle AlbumWriter SubOrg AlbumFeatArtists ReleaseDate
     fi
 
     cat <<EOF > $outpath
-<table border="1" style="border: 1px #EBEBEB; width: 100.02%;">
-<tbody>
-<tr>
-<td style="background-color: #ebebeb;"><img src="/GetImage.aspx?IDMF=6267e45c-4b32-4667-808a-196a7fbfa87d&amp;w=500&amp;h=500&amp;src=mc" alt="" title="" class="mediaImage"></td>
-<td style="background-color: #ebebeb;">
+<div id="responsiveTable" style="display: table; width: 100%;">
+<div class="responsiveTableCell" style="background-color: #ebebeb; display: table-cell; vertical-align: top; padding: 10px; text-align: center;"><img id="responsiveImage" src="/GetImage.aspx?IDMF=6267e45c-4b32-4667-808a-196a7fbfa87d&amp;w=400&amp;h=400&amp;src=mc" alt="" title="" style="width: 100%; height: auto; margin-left: auto; margin-right: auto;"></div>
+<div class="responsiveTableCell" style="background-color: #ebebeb; display: table-cell; vertical-align: center; padding: 10px;">
+<div style="max-width: 350px; margin: 0 auto;">
 <h3><strong>$AlbumTitle</strong></h3>
-$AlbumWriter<br><br><strong>$SubOrg</strong><br>$AlbumFeatArtists<br><br/>Released $ReleaseDate<br><strong>$CatNum</strong></td>
-</tr>
-</tbody>
-</table>
+$AlbumWriter<br><br><strong>$SubOrg</strong><br>$AlbumFeatArtists<br><br>Released $ReleaseDate<br><strong>$CatNum</strong></div>
+</div>
+</div>
+<p class="tinymcewrapper-remove">
+<script>
+        function adjustLayout() {
+            var table = document.getElementById('responsiveTable');
+            var cells = document.getElementsByClassName('responsiveTableCell');
+            if (window.innerWidth <= 768) {
+                table.style.display = 'block';
+                for (var i = 0; i < cells.length; i++) {
+                    cells[i].style.display = 'block';
+                    cells[i].style.width = '100%';
+                }
+            } else {
+                table.style.display = 'table';
+                for (var i = 0; i < cells.length; i++) {
+                    cells[i].style.display = 'table-cell';
+                    cells[i].style.width = 'auto';
+                }
+            }
+        }
+
+        // Adjust layout on page load and window resize
+        window.addEventListener('load', adjustLayout);
+        window.addEventListener('resize', adjustLayout);
+    </script>
+</p>
 <hr>
 <p class="tinymcewrapper-remove">$Description</p>
 <h2>Listen now</h2>
