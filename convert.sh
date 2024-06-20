@@ -20,7 +20,7 @@ if [ ! -f $filepath ]; then
 fi
 
 skip_headers=1
-while IFS='|' read -r AlbumTitle AlbumWriter SubOrg AlbumFeatArtists ReleaseDate CatNum AppleURL SpotifyURL YouTubeURL PrestoURL Description Track1 Track1Dur Track2 Track2Dur Track3 Track3Dur RecordingLocation RecordingDate Producer Engineer Performers MFiT; do
+while IFS='|' read -r AlbumTitle AlbumWriter SubOrg AlbumFeatArtists ReleaseDate CatNum AppleURL SpotifyURL YouTubeURL PrestoURL Description Track1 Track1Dur Track1Writer Track2 Track2Dur Track2Writer Track3 Track3Dur Track3Writer RecordingLocation RecordingDate Producer Engineer Performers; do
   if ((skip_headers)); then
     ((skip_headers--))
   else
@@ -41,14 +41,14 @@ while IFS='|' read -r AlbumTitle AlbumWriter SubOrg AlbumFeatArtists ReleaseDate
       listenbuttons="$listenbuttons<a href=\"$YouTubeURL\" target=\"_blank\" rel=\"noopener\" class=\"button-pink\">Youtube music <i class=\"fa fa-youtube-play\" aria-hidden=\"true\"></i></a>"
     fi
 
-    tracks="1. $Track1 ($AlbumWriter) - $Track1Dur<br/>"
+    tracks="1. $Track1 ($Track1Writer) - $Track1Dur<br/>"
 
     if [ "$Track2" ]; then
-      tracks="${tracks}2. $Track2 ($AlbumWriter) - $Track2Dur<br/>"
+      tracks="${tracks}2. $Track2 ($Track2Writer) - $Track2Dur<br/>"
     fi
 
     if [ "$Track3" ]; then
-      tracks="${tracks}3. $Track3 ($AlbumWriter) - $Track3Dur<br/>"
+      tracks="${tracks}3. $Track3 ($Track3Writer) - $Track3Dur<br/>"
     fi
 
     listenbuttons="$listenbuttons</p>"
